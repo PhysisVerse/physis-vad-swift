@@ -26,9 +26,10 @@ public actor VADProcessor {
 		return events
 	}
 
-	public func reset() {
+	public func reset() throws {
 		frameBuffer.reset()
 		stateMachine.reset()
+		try model.resetState()
 	}
 
 	public var currentState: VoiceActivityState {
