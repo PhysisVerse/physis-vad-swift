@@ -119,4 +119,3 @@ Suggested citations from the original model card:
   year={2021},
   url={https://github.com/snakers4/silero-vad}
 }
-::contentReference[oaicite:1]{index=1}
