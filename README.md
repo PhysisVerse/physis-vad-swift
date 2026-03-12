@@ -42,6 +42,49 @@ Place the model here:
 - `VoiceActivityEvent`
 - `VoiceActivityState`
 
+## Architecture
+
+```mermaid
+flowchart TD
+
+	A[Microphone Audio Stream] --> B[AVAudioEngine Capture]
+	B --> C[Resample to 16kHz Mono]
+	C --> D[Audio Frame Buffer]
+
+	D --> E[576 Sample Frame]
+	E --> F[Silero VAD CoreML Model]
+
+	F --> G[VAD Probability Output]
+
+	G --> H[Voice Activity State Machine]
+
+	H --> I[speechStarted]
+	H --> J[speechActive]
+	H --> K[speechEnded]
+
+	I --> L[PCC Adapter]
+	J --> L
+	K --> L
+
+	L --> M[Franca Runtime]
+
+```
+	
+### How it works
+	
+	1. Audio is captured from the device microphone.
+	2. The stream is resampled to **16kHz mono** for the VAD model.
+	3. Audio samples are buffered and segmented into **576-sample frames** (~36ms).
+	4. Each frame is processed by the **Silero VAD CoreML model**.
+	5. The model outputs a **speech probability (0–1)**.
+	6. A state machine applies smoothing and emits normalized events:
+	
+	- `speechStarted`
+	- `speechActive`
+	- `speechEnded`
+	
+	7. These events are forwarded to **PCC**, which integrates them into the Franca voice pipeline.
+
 ## Notes
 
 The CoreML wrapper uses a generic `MLModel` loader rather than relying on a generated typed class.
