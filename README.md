@@ -1,6 +1,7 @@
 # PhysisVAD
 
 ![Swift](https://img.shields.io/badge/Swift-6-orange)
+[![Swift Package Index](https://img.shields.io/badge/Swift%20Package%20Index-Compatible-blue)](https://swiftpackageindex.com)
 ![SwiftPM](https://img.shields.io/badge/SwiftPM-Compatible-blue)
 ![License](https://img.shields.io/badge/license-Apache%202.0-green)
 ![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20macOS-lightgrey)
