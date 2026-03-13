@@ -144,6 +144,110 @@ For exact benchmark visuals and comparison graphs, see the original model card:
 
 ---
 
+## Roadmap
+
+The current package provides a working, tested CoreML-backed Silero VAD implementation for Apple platforms. The following roadmap outlines the most valuable next improvements, ordered from highest impact to lower-priority refinements.
+
+### 1. Replace the current frame buffer with a true ring buffer
+The current buffering approach is functional, but a dedicated ring buffer would reduce unnecessary array churn and improve stability for continuous real-time use.
+
+Planned improvements:
+- fixed-capacity circular audio buffer
+- lower allocation overhead during continuous streaming
+- cleaner frame extraction under sustained capture loads
+- better foundation for pre-roll support
+
+### 2. Add pre-roll buffering
+A short pre-roll buffer would preserve a small amount of audio immediately before speech activation so the first syllable is not clipped when upstream streaming begins.
+
+Planned improvements:
+- retain ~200–300 ms of recent audio history
+- expose pre-roll audio when `speechStarted` fires
+- improve real-world streaming responsiveness
+- reduce clipped utterance starts in interactive voice systems
+
+### 3. Harden the voice activity state machine
+The current state machine is intentionally simple. It should be expanded to better handle real-world noise, short utterances, and interruption scenarios.
+
+Planned improvements:
+- distinct start and end thresholds
+- stricter barge-in gating than general speech detection
+- minimum speech duration
+- minimum silence duration
+- optional cooldown after speech end
+- improved debounce behavior in noisy environments
+
+### 4. Expand test coverage
+The package already has baseline tests, but broader coverage will improve reliability as the module is integrated into live audio systems.
+
+Planned improvements:
+- repeated silence / repeated speech tests
+- start-debounce and end-hangover validation
+- reset behavior validation
+- recurrent state reset correctness
+- invalid frame handling
+- long-running stream stability tests
+
+### 5. Add debug and telemetry hooks
+Observability will make tuning and integration much easier when the package is connected to live microphone input.
+
+Planned improvements:
+- optional debug logging
+- probability tracing
+- event tracing
+- frame counters
+- inference timing metrics
+- simple diagnostics mode for integration testing
+
+### 6. Improve recurrent state/session lifecycle handling
+The Silero model is stateful, so explicit control over model lifecycle will improve predictability across sessions and interruptions.
+
+Planned improvements:
+- clearer session start/end semantics
+- optional automatic reset after long silence
+- better interruption/reset hooks
+- route-change safe reset behavior
+- clearer guidance for host app integration
+
+### 7. Optimize CoreML input/output memory handling
+The current implementation is correct, but there is room to reduce allocations and improve efficiency around CoreML inference.
+
+Planned improvements:
+- reduce repeated temporary allocations
+- reuse `MLMultiArray` buffers where practical
+- tighten inference path memory behavior
+- improve sustained runtime efficiency
+
+### 8. Refine the public API surface
+The public package API can be expanded to provide a more production-friendly interface while preserving a small core contract.
+
+Planned improvements:
+- clearer separation between raw model probability and semantic events
+- richer event/result structures
+- optional streaming-oriented APIs
+- better debug-facing inspection interfaces
+
+### 9. Add optional helper adapters for upstream audio normalization
+The package currently expects correctly prepared input. Small helper utilities could make integration easier without taking ownership of full microphone capture.
+
+Planned improvements:
+- helper seams for 16kHz mono normalization
+- stricter input contract documentation
+- optional convenience adapters for Apple audio pipelines
+
+### 10. Expand the event model where useful
+The current event surface is intentionally minimal. Over time, additional event types may be useful for more advanced interaction systems.
+
+Possible future additions:
+- `bargeInCandidate`
+- `speechProbabilityUpdated`
+- `speechStateChanged`
+- `stabilityReached`
+
+These would be introduced carefully to avoid overcomplicating the package’s core purpose.
+
+---
+
 ## Attribution
 
 If you use or extend this package, please credit both:
