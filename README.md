@@ -4,7 +4,7 @@
 ![SwiftPM](https://img.shields.io/badge/SwiftPM-Compatible-blue)
 ![License](https://img.shields.io/badge/license-Apache%202.0-green)
 ![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20macOS-lightgrey)
-[![Built with Nova](https://img.shields.io/badge/Built%20with-Nova-blue?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PC9zdmc+)](https://nova.app)
+[![Built with Nova](https://img.shields.io/badge/Built%20with-Nova-blue)](https://nova.app)
 
 A modular Swift package for local voice activity detection on Apple platforms.
 
