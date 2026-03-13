@@ -98,52 +98,6 @@ This keeps the package cleaner and more portable inside SwiftPM.
 
 ---
 
-## Model Credits
-
-This package uses the **Silero Voice Activity Detection (VAD)** model, converted to **CoreML** for Apple platforms.
-
-### Original model
-- **Silero Team**
-- Repository: `https://github.com/snakers4/silero-vad`
-
-### CoreML conversion
-- **FluidInference**
-- Model card: `https://huggingface.co/FluidInference/silero-vad-coreml`
-
-### License
-- **MIT**  
-  Both the original Silero model and the CoreML conversion are listed as MIT-licensed.
-
----
-
-## Model Notes
-
-The bundled model is a **CoreML implementation of Silero VAD** optimized for Apple platforms, intended for:
-
-- real-time voice activity detection in iOS/macOS applications
-- speech preprocessing for ASR systems
-- audio segmentation and filtering
-
-This package currently uses the standard streaming model variant:
-
-- `silero-vad-unified-v6.0.0.mlpackage`
-
----
-
-## Performance Notes
-
-According to the original CoreML model card:
-
-- the project includes performance comparison charts against the Silero VAD v6.0.0 baseline
-- the **256ms** variant processes **8 chunks of 32ms audio in batches**, making it significantly faster than the standard streaming variant
-- the maintainers note that **quantized versions did not provide performance improvement**, since the model is already very small
-
-For exact benchmark visuals and comparison graphs, see the original model card:
-
-`https://huggingface.co/FluidInference/silero-vad-coreml/blob/main/README.md`
-
----
-
 ## Roadmap
 
 The current package provides a working, tested CoreML-backed Silero VAD implementation for Apple platforms. The following roadmap outlines the most valuable next improvements, ordered from highest impact to lower-priority refinements.
@@ -245,6 +199,52 @@ Possible future additions:
 - `stabilityReached`
 
 These would be introduced carefully to avoid overcomplicating the package’s core purpose.
+
+---
+
+## Model Credits
+
+This package uses the **Silero Voice Activity Detection (VAD)** model, converted to **CoreML** for Apple platforms.
+
+### Original model
+- **Silero Team**
+- Repository: `https://github.com/snakers4/silero-vad`
+
+### CoreML conversion
+- **FluidInference**
+- Model card: `https://huggingface.co/FluidInference/silero-vad-coreml`
+
+### License
+- **MIT**  
+  Both the original Silero model and the CoreML conversion are listed as MIT-licensed.
+
+---
+
+## Model Notes
+
+The bundled model is a **CoreML implementation of Silero VAD** optimized for Apple platforms, intended for:
+
+- real-time voice activity detection in iOS/macOS applications
+- speech preprocessing for ASR systems
+- audio segmentation and filtering
+
+This package currently uses the standard streaming model variant:
+
+- `silero-vad-unified-v6.0.0.mlpackage`
+
+---
+
+## Performance Notes
+
+According to the original CoreML model card:
+
+- the project includes performance comparison charts against the Silero VAD v6.0.0 baseline
+- the **256ms** variant processes **8 chunks of 32ms audio in batches**, making it significantly faster than the standard streaming variant
+- the maintainers note that **quantized versions did not provide performance improvement**, since the model is already very small
+
+For exact benchmark visuals and comparison graphs, see the original model card:
+
+`https://huggingface.co/FluidInference/silero-vad-coreml/blob/main/README.md`
 
 ---
 
