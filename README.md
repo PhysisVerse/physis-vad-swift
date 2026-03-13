@@ -143,7 +143,7 @@ For exact benchmark visuals and comparison graphs, see the original model card:
 If you use or extend this package, please credit both:
 
 - the **Silero Team** for the original VAD model
-- **FluidInference / FluidAudio** for the CoreML conversion work
+- **FluidInference** for the CoreML conversion work
 
 Suggested citations from the original model card:
 
