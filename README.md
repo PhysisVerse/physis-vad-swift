@@ -1,5 +1,11 @@
 # PhysisVAD
 
+![Swift](https://img.shields.io/badge/Swift-6-orange)
+![SwiftPM](https://img.shields.io/badge/SwiftPM-Compatible-blue)
+![License](https://img.shields.io/badge/license-Apache%202.0-green)
+![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20macOS-lightgrey)
+[![Built with Nova](https://img.shields.io/badge/Built%20with-Nova-blue)](https://nova.app)
+
 A modular Swift package for local voice activity detection on Apple platforms.
 
 ## Current direction
