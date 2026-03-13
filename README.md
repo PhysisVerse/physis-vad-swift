@@ -101,9 +101,8 @@ This package uses the **Silero Voice Activity Detection (VAD)** model, converted
 - Repository: `https://github.com/snakers4/silero-vad`
 
 ### CoreML conversion
-- **FluidInference / FluidAudio**
+- **FluidInference**
 - Model card: `https://huggingface.co/FluidInference/silero-vad-coreml`
-- Swift reference project: `https://github.com/FluidAudio/FluidAudioSwift`
 
 ### License
 - **MIT**  
@@ -162,3 +161,4 @@ Suggested citations from the original model card:
   year={2021},
   url={https://github.com/snakers4/silero-vad}
 }
+```
